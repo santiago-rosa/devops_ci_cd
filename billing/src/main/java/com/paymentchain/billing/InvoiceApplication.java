@@ -34,6 +34,7 @@ public class InvoiceApplication {
         SpringApplication.run(InvoiceApplication.class, args);
     }
 
+
      //Define all details for app info
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("Digitalthinking Shool")
