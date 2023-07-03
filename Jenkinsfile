@@ -21,10 +21,18 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        /*stage('Build Docker Image') {
             steps {
                 script {
                     docker.build('my-spring-boot-app:latest', '.')
+                }
+            }
+        }*/
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    dockerImage = docker.build("my-spring-boot-app:latest")
                 }
             }
         }
