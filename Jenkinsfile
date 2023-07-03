@@ -40,7 +40,7 @@ pipeline {
                     dir('./billing/target') {
                         // Note: This assumes that Dockerfile is in the same directory with .jar file
                         // if not, provide the correct path to the Dockerfile
-                        dockerImage = docker.build("santiagorrosa/my-spring-boot-app:latest", "--build-arg JAR_FILE=billing-0.0.1-SNAPSHOT.jar")
+                        dockerImage = docker.build("santiagorrosa/my-spring-boot-app:latest", "--build-arg JAR_FILE=billing-0.0.1-SNAPSHOT.jar .")
                     }
                 }
             }
