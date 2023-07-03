@@ -10,7 +10,6 @@ pipeline {
 
         stage('Build with Maven') {
             steps {
-                //sh 'mvn clean install'
                 sh 'cd ./billing && mvn clean install'
             }
         }
@@ -21,18 +20,11 @@ pipeline {
             }
         }
 
-        /*stage('Build Docker Image') {
-            steps {
-                script {
-                    docker.build('my-spring-boot-app:latest', '.')
-                }
-            }
-        }*/
-
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("my-spring-boot-app:latest")
+                    // Note: This assumes that Dockerfile is in the current directory
+                    def dockerImage = docker.build('my-spring-boot-app:latest')
                 }
             }
         }
@@ -40,7 +32,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'a81a5674-1d28-4348-8dae-2af1a2569c30') {
+                    docker.withRegistry('https://registry.hub.docker.com', ''a81a5674-1d28-4348-8dae-2af1a2569c30'') {
                         dockerImage.push("latest")
                     }
                 }
