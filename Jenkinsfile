@@ -1,6 +1,10 @@
 pipeline {
     //agent any
     agent { docker { image 'maven:3.9.0-eclipse-temurin-11' } }
+
+ // Define dockerImage at a global scope so it can be accessed across different stages
+    def dockerImage
+
     stages {
         stage('Checkout') {
             steps {
@@ -24,7 +28,7 @@ pipeline {
             steps {
                 script {
                     // The Dockerfile is in the "billing/" directory
-                    def dockerImage = docker.build('my-spring-boot-app:latest', './billing')
+                    dockerImage = docker.build('my-spring-boot-app:latest', './billing')
                 }
             }
         }
