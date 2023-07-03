@@ -24,27 +24,27 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        /*stage('Build Docker Image') {
             steps {
                 script {
                     // The Dockerfile is in the "billing/" directory
                     dockerImage = docker.build('santiagorrosa/my-spring-boot-app:latest', './billing/target')
                 }
             }
-        }
+        }*/
 
-        /*stage('Build Docker Image') {
+        stage('Build Docker Image') {
             steps {
                 script {
                     // Move to the directory with the .jar file
                     dir('./billing/target') {
                         // Note: This assumes that Dockerfile is in the same directory with .jar file
                         // if not, provide the correct path to the Dockerfile
-                        dockerImage = docker.build("santiagorrosa/my-spring-boot-app:latest", "--build-arg JAR_FILE=billing-0.0.1-SNAPSHOT.jar ../Dockerfile")
+                        dockerImage = docker.build("santiagorrosa/my-spring-boot-app:latest", "--build-arg JAR_FILE=billing-0.0.1-SNAPSHOT.jar")
                     }
                 }
             }
-        }*/
+        }
 
         stage('Push Docker Image') {
             steps {
