@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     // The Dockerfile is in the "billing/" directory
-                    dockerImage = docker.build('my-spring-boot-app:latest', './billing')
+                    dockerImage = docker.build('santiagorrosa/my-spring-boot-app:latest', './billing')
                 }
             }
         }
