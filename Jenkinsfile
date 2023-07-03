@@ -3,7 +3,7 @@ pipeline {
 
    /* tools {
         // We need Maven and Docker installed in the agent
-        maven 'Maven 3.9.3' 
+        maven 'Maven 3.9.3'
         docker 'Docker'
     }*/
 
@@ -21,10 +21,16 @@ pipeline {
             }
         }
 
+        stage('Show path') {
+            steps {
+                sh 'echo $PATH'
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("my-spring-boot-app:latest", ".")
+                    docker.build('my-spring-boot-app:latest', '.')
                 }
             }
         }
@@ -33,7 +39,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'a81a5674-1d28-4348-8dae-2af1a2569c30') {
-                        docker.image("my-spring-boot-app:latest").push()
+                        docker.image('my-spring-boot-app:latest').push()
                     }
                 }
             }
