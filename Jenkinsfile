@@ -2,10 +2,13 @@ pipeline {
     //agent any
     agent { docker { image 'maven:3.9.0-eclipse-temurin-11' } }
 
- // Define dockerImage at a global scope so it can be accessed across different stages
-    def dockerImage
+    
 
     stages {
+       
+        // Define dockerImage at a global scope so it can be accessed across different stages
+        def dockerImage
+
         stage('Checkout') {
             steps {
                 checkout scm
