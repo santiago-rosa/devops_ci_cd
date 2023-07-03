@@ -1,11 +1,9 @@
 pipeline {
     agent any
 
-   /* tools {
-        // We need Maven and Docker installed in the agent
-        maven 'Maven 3.9.3'
+    tools {
         docker 'Docker'
-    }*/
+    }
 
     stages {
         stage('Checkout') {
