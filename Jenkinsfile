@@ -36,13 +36,12 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Move to the directory with the .jar file
-                    dir('./billing/target') {
-                        // Note: This assumes that Dockerfile is in the same directory with .jar file
-                        // if not, provide the correct path to the Dockerfile
-                        dockerImage = docker.build("santiagorrosa/my-spring-boot-app:latest", "--build-arg JAR_FILE=billing-0.0.1-SNAPSHOT.jar .")
-                    }
+                // Move to the directory where the Dockerfile is
+                dir('./billing') {
+                    // Now Dockerfile and .jar file are both accessible, pass the relative path to .jar file as build argument
+                    dockerImage = docker.build("santiagorrosa/my-spring-boot-app:latest", "--build-arg JAR_FILE=target/billing-0.0.1-SNAPSHOT.jar .")
                 }
+            }
             }
         }
 
